@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { ChefHat, Sparkles, Flame } from "lucide-react";
+import { UtensilsCrossed } from "lucide-react";
 import logo from "@/assets/logo.png";
 
 interface LoadingScreenProps {
@@ -9,204 +9,172 @@ interface LoadingScreenProps {
 
 export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [progress, setProgress] = useState(0);
-  const [stage, setStage] = useState(0);
+  const [textIndex, setTextIndex] = useState(0);
 
-  const stages = [
-    { text: "Preparing fresh ingredients...", icon: ChefHat },
-    { text: "Heating the perfect sauce...", icon: Flame },
-    { text: "Adding the final touches...", icon: Sparkles },
+  const loadingTexts = [
+    "Boiling the pasta…",
+    "Melting the cheese…",
+    "Plating your ecstasy…",
   ];
 
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
-        const newProgress = prev + 1.5;
+        const newProgress = prev + 1.2;
         
-        // Update stage based on progress
-        if (newProgress >= 30 && stage === 0) setStage(1);
-        if (newProgress >= 65 && stage === 1) setStage(2);
+        // Update text based on progress
+        if (newProgress >= 33 && textIndex === 0) setTextIndex(1);
+        if (newProgress >= 66 && textIndex === 1) setTextIndex(2);
         
         if (newProgress >= 100) {
           clearInterval(interval);
-          setTimeout(onComplete, 800);
+          setTimeout(onComplete, 600);
           return 100;
         }
         return newProgress;
       });
-    }, 30);
+    }, 25);
 
     return () => clearInterval(interval);
-  }, [onComplete, stage]);
-
-  const CurrentIcon = stages[stage].icon;
+  }, [onComplete, textIndex]);
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-cream"
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      transition={{ duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }}
+      exit={{ opacity: 0, scale: 0.98 }}
+      transition={{ duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
     >
-      {/* Animated Gradient Background */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--deep-black))] via-[hsl(var(--italian-red))] to-[hsl(var(--italian-green))]"
-        animate={{
-          background: [
-            "linear-gradient(135deg, hsl(0 0% 10%), hsl(355 70% 45%), hsl(155 100% 27%))",
-            "linear-gradient(225deg, hsl(0 0% 10%), hsl(355 70% 35%), hsl(155 100% 22%))",
-            "linear-gradient(315deg, hsl(0 0% 10%), hsl(355 70% 45%), hsl(155 100% 27%))",
-          ],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-      />
+      {/* Decorative Pattern Background */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 20px 20px, hsl(var(--deep-black)) 1px, transparent 0)`,
+          backgroundSize: '40px 40px'
+        }} />
+      </div>
 
-      {/* Animated Particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(25)].map((_, i) => (
+      {/* Floating Ingredients */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(12)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-cream/30 rounded-full"
+            className="absolute text-4xl opacity-20"
             initial={{
               x: Math.random() * window.innerWidth,
-              y: Math.random() * window.innerHeight,
+              y: -50,
+              rotate: Math.random() * 360,
             }}
             animate={{
-              x: [
-                Math.random() * window.innerWidth,
-                Math.random() * window.innerWidth,
-              ],
-              y: [
-                Math.random() * window.innerHeight,
-                Math.random() * window.innerHeight,
-              ],
-              opacity: [0, 1, 0],
+              y: window.innerHeight + 50,
+              rotate: Math.random() * 360 + 360,
             }}
             transition={{
-              duration: Math.random() * 3 + 2,
+              duration: Math.random() * 8 + 10,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: Math.random() * 3,
+              ease: "linear",
             }}
-          />
+          >
+            {["🍝", "🧀", "🍅", "🌿"][Math.floor(Math.random() * 4)]}
+          </motion.div>
         ))}
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center">
-        {/* Logo with Enhanced Animation */}
+      <div className="relative z-10 flex flex-col items-center px-4">
+        {/* Logo with Glow Effect */}
         <motion.div
-          initial={{ scale: 0.5, opacity: 0, rotate: -10 }}
-          animate={{ 
-            scale: 1, 
-            opacity: 1, 
-            rotate: 0,
-          }}
-          transition={{ 
-            duration: 0.8, 
-            ease: [0.16, 1, 0.3, 1] 
-          }}
-          className="relative mb-16"
+          initial={{ scale: 0.8, opacity: 0, y: -30 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          className="relative mb-8"
         >
-          {/* Glow Ring */}
           <motion.div
-            className="absolute inset-0 rounded-full"
+            className="absolute inset-0 blur-3xl rounded-full"
             animate={{
-              boxShadow: [
-                "0 0 40px 10px hsl(355 70% 45% / 0.3)",
-                "0 0 80px 20px hsl(355 70% 45% / 0.5)",
-                "0 0 40px 10px hsl(355 70% 45% / 0.3)",
+              background: [
+                "radial-gradient(circle, hsl(var(--italian-red) / 0.2) 0%, transparent 70%)",
+                "radial-gradient(circle, hsl(var(--italian-green) / 0.2) 0%, transparent 70%)",
+                "radial-gradient(circle, hsl(var(--italian-red) / 0.2) 0%, transparent 70%)",
               ],
             }}
-            transition={{ duration: 2, repeat: Infinity }}
+            transition={{ duration: 4, repeat: Infinity }}
           />
-          
-          <motion.img
+          <img
             src={logo}
             alt="Italian Ecstasy"
-            className="w-72 md:w-[28rem] h-auto relative z-10"
-            animate={{
-              filter: [
-                "drop-shadow(0 0 30px hsl(355 70% 45%))",
-                "drop-shadow(0 0 60px hsl(355 70% 50%))",
-                "drop-shadow(0 0 30px hsl(355 70% 45%))",
-              ],
-            }}
-            transition={{ duration: 2.5, repeat: Infinity }}
+            className="w-64 md:w-80 h-auto relative z-10"
           />
-        </motion.div>
-
-        {/* Loading Stage with Icon */}
-        <motion.div
-          className="flex flex-col items-center gap-6 mb-8"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={stage}
-              className="flex items-center gap-3"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{ duration: 0.4 }}
-            >
-              <motion.div
-                animate={{ rotate: stage === 1 ? 360 : 0 }}
-                transition={{ duration: 2, repeat: stage === 1 ? Infinity : 0 }}
-              >
-                <CurrentIcon className="w-8 h-8 text-cream" />
-              </motion.div>
-              <p className="text-cream text-xl md:text-3xl font-heading">
-                {stages[stage].text}
-              </p>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Progress Bar Container */}
-          <div className="w-80 md:w-96 space-y-3">
-            {/* Progress Bar */}
-            <div className="h-2 bg-cream/20 rounded-full overflow-hidden backdrop-blur-sm">
-              <motion.div
-                className="h-full bg-gradient-to-r from-primary via-cream to-secondary rounded-full relative"
-                initial={{ width: "0%" }}
-                animate={{ width: `${progress}%` }}
-                transition={{ duration: 0.3 }}
-              >
-                {/* Shimmer Effect */}
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                  animate={{ x: ['-100%', '200%'] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                />
-              </motion.div>
-            </div>
-
-            {/* Progress Percentage */}
-            <div className="flex justify-between items-center">
-              <motion.span 
-                className="text-cream/80 text-sm font-body"
-                key={Math.floor(progress)}
-                initial={{ opacity: 0.7 }}
-                animate={{ opacity: 1 }}
-              >
-                {Math.floor(progress)}%
-              </motion.span>
-              <span className="text-cream/60 text-sm font-body tracking-wider">
-                LOADING ECSTASY
-              </span>
-            </div>
-          </div>
         </motion.div>
 
         {/* Tagline */}
         <motion.p
-          className="text-cream/70 text-lg md:text-xl font-heading italic"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.6 }}
+          className="text-2xl md:text-3xl font-heading text-deep-black/80 mb-12 italic"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
         >
-          Preparing your Italian experience...
+          Ecstasy in Every Bite
         </motion.p>
+
+        {/* Animated Fork with Pasta Icon */}
+        <motion.div
+          className="mb-10"
+          animate={{ rotate: 360 }}
+          transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+        >
+          <UtensilsCrossed className="w-12 h-12 text-primary" />
+        </motion.div>
+
+        {/* Cycling Loading Text */}
+        <div className="h-8 mb-8 flex items-center justify-center">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={textIndex}
+              className="text-lg md:text-xl font-body text-deep-black/70"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4 }}
+            >
+              {loadingTexts[textIndex]}
+            </motion.p>
+          </AnimatePresence>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="w-80 md:w-96 space-y-3">
+          <div className="h-2 bg-deep-black/10 rounded-full overflow-hidden">
+            <motion.div
+              className="h-full bg-gradient-to-r from-primary via-secondary to-italian-green rounded-full relative"
+              initial={{ width: "0%" }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.3 }}
+            >
+              {/* Shimmer Effect */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent"
+                animate={{ x: ['-100%', '200%'] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+              />
+            </motion.div>
+          </div>
+
+          {/* Progress Percentage */}
+          <div className="flex justify-between items-center">
+            <motion.span
+              className="text-deep-black/60 text-sm font-body font-semibold"
+              key={Math.floor(progress)}
+              initial={{ opacity: 0.7 }}
+              animate={{ opacity: 1 }}
+            >
+              {Math.floor(progress)}%
+            </motion.span>
+            <span className="text-deep-black/50 text-xs font-body tracking-widest uppercase">
+              Loading Experience
+            </span>
+          </div>
+        </div>
       </div>
     </motion.div>
   );
