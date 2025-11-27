@@ -1,160 +1,330 @@
-import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
-import heroImage from "@/assets/hero-pasta.jpg";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ChevronRight, Sparkles, Clock, Users, Award } from "lucide-react";
+import { useRef } from "react";
+import heroFoodImage from "@/assets/spaghetti-aglio-olio.jpg";
 
 export const HeroSection = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background with Parallax */}
-      <motion.div 
-        className="absolute inset-0"
-        initial={{ scale: 1.1 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--deep-black))] via-[hsl(var(--italian-red))/0.3] to-[hsl(var(--italian-green))/0.2]" />
-        <img
-          src={heroImage}
-          alt="Delicious Italian Pasta"
-          className="w-full h-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[hsl(var(--deep-black))/0.4] to-[hsl(var(--deep-black))/0.9]" />
-      </motion.div>
-
-      {/* Floating Particles */}
+    <section
+      ref={ref}
+      id="hero"
+      className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-cream via-cream/95 to-cream/90"
+    >
+      {/* Decorative Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(15)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-2 h-2 bg-cream/20 rounded-full"
-            initial={{ 
-              x: Math.random() * window.innerWidth, 
-              y: window.innerHeight + 100,
-              scale: Math.random() * 0.5 + 0.5
-            }}
-            animate={{ 
-              y: -100,
-              x: Math.random() * window.innerWidth,
-            }}
-            transition={{ 
-              duration: Math.random() * 10 + 10,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "linear"
-            }}
-          />
-        ))}
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 opacity-[0.02]">
+          <div className="absolute inset-0" style={{
+            backgroundImage: `linear-gradient(hsl(var(--deep-black)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--deep-black)) 1px, transparent 1px)`,
+            backgroundSize: '50px 50px'
+          }} />
+        </div>
+
+        {/* Gradient Orbs */}
+        <motion.div
+          className="absolute top-20 -right-40 w-96 h-96 rounded-full bg-gradient-to-br from-primary/10 to-transparent blur-3xl"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.3, 0.5, 0.3]
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full bg-gradient-to-tr from-secondary/10 to-transparent blur-3xl"
+          animate={{ 
+            scale: [1.2, 1, 1.2],
+            opacity: [0.5, 0.3, 0.5]
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
       </div>
 
-      {/* Premium Content */}
-      <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">
-        {/* Premium Badge */}
-        <motion.div
-          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary/20 backdrop-blur-md border border-primary/30 mb-8"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.6 }}
-        >
-          <Sparkles className="w-4 h-4 text-primary" />
-          <span className="text-cream font-semibold text-sm tracking-wider uppercase">Premium Italian QSR</span>
-          <Sparkles className="w-4 h-4 text-primary" />
-        </motion.div>
-
-        <motion.h1
-          className="text-6xl md:text-8xl lg:text-9xl font-heading font-bold text-cream mb-8 leading-tight"
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        >
-          Where Comfort <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-[hsl(var(--italian-red))] to-[hsl(var(--italian-green))]">
-            Meets Flavour
-          </span>
-        </motion.h1>
-
-        <motion.div
-          className="relative inline-block mb-6"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5, duration: 0.7 }}
-        >
-          <p className="text-2xl md:text-4xl lg:text-5xl text-cream/95 font-heading italic">
-            Ecstasy in Every Bite
-          </p>
+      <div className="container mx-auto px-4 py-20 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          {/* Left Column - Content */}
           <motion.div
-            className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-          />
-        </motion.div>
-
-        <motion.p
-          className="text-lg md:text-2xl text-cream/80 mb-16 max-w-3xl mx-auto font-light leading-relaxed"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.8 }}
-        >
-          Nashik's most loved Italian comfort-food destination — where authentic flavours meet modern innovation
-        </motion.p>
-
-        <motion.div
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
-        >
-          <motion.a 
-            href="#menu" 
-            className="btn-hero group relative overflow-hidden"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="space-y-8"
+            style={{ y, opacity }}
           >
-            <span className="relative z-10">Explore Menu</span>
+            {/* Premium Badge */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--italian-red))] to-[hsl(var(--primary))]"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: 0 }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.a>
-          <motion.a 
-            href="#contact" 
-            className="btn-secondary-hero group relative overflow-hidden"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 backdrop-blur-sm"
+            >
+              <Award className="w-4 h-4 text-primary" />
+              <span className="text-sm font-semibold text-deep-black tracking-wide">
+                Since 2020 • Nashik's OG Italian QSR
+              </span>
+            </motion.div>
+
+            {/* Main Heading */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+            >
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-deep-black leading-tight mb-6">
+                Ecstasy in{" "}
+                <span className="relative inline-block">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-italian-red to-secondary">
+                    Every Bite
+                  </span>
+                  <motion.div
+                    className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-primary/50 to-secondary/50"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ delay: 0.8, duration: 0.8 }}
+                  />
+                </span>
+              </h1>
+
+              <p className="text-xl md:text-2xl text-deep-black/70 font-body leading-relaxed max-w-xl">
+                Fast, fresh Italian comfort food crafted with passion. Experience authentic flavours with an Indian twist.
+              </p>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.7 }}
+              className="flex flex-wrap gap-4"
+            >
+              <motion.button
+                onClick={() => scrollToSection('menu')}
+                className="group relative overflow-hidden px-8 py-4 bg-gradient-to-r from-primary to-italian-red text-cream font-semibold text-lg rounded-full shadow-lg shadow-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/40"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  View Menu
+                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-italian-red to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                />
+              </motion.button>
+
+              <motion.button
+                onClick={() => scrollToSection('contact')}
+                className="group px-8 py-4 bg-transparent border-2 border-deep-black/20 text-deep-black font-semibold text-lg rounded-full hover:bg-deep-black hover:text-cream hover:border-deep-black transition-all duration-300"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <span className="flex items-center gap-2">
+                  Visit Our Outlet
+                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </span>
+              </motion.button>
+            </motion.div>
+
+            {/* Assurance Text */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8, duration: 0.7 }}
+              className="flex flex-col sm:flex-row gap-6 pt-6 border-t border-deep-black/10"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center">
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    ✓
+                  </motion.div>
+                </div>
+                <span className="text-sm font-medium text-deep-black/80">
+                  Fast, Fresh & Consistent
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
+                  <Users className="w-4 h-4 text-primary" />
+                </div>
+                <span className="text-sm font-medium text-deep-black/80">
+                  Loved by thousands of Nashikkars
+                </span>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Column - Hero Food Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.5, duration: 0.9 }}
+            className="relative"
           >
-            <span className="relative z-10">Visit Us</span>
+            {/* Main Food Card */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-[hsl(var(--italian-green))] to-[hsl(var(--secondary))]"
-              initial={{ x: '-100%' }}
-              whileHover={{ x: 0 }}
+              className="relative bg-white rounded-3xl overflow-hidden shadow-2xl"
+              whileHover={{ scale: 1.02 }}
               transition={{ duration: 0.3 }}
-            />
-          </motion.a>
-        </motion.div>
+            >
+              {/* Image Container */}
+              <div className="relative h-[500px] overflow-hidden">
+                <motion.img
+                  src={heroFoodImage}
+                  alt="Spaghetti Aglio Olio"
+                  className="w-full h-full object-cover"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.6 }}
+                />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              </div>
+
+              {/* Card Footer */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <h3 className="text-2xl font-heading font-bold mb-2">
+                  Signature Spaghetti
+                </h3>
+                <p className="text-sm text-white/90">
+                  Perfectly cooked with garlic & herbs
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Floating Tags */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.6 }}
+              className="absolute -top-4 -right-4 px-6 py-3 bg-gradient-to-r from-primary to-italian-red text-cream font-bold rounded-full shadow-xl z-20"
+            >
+              <div className="flex items-center gap-2">
+                <Sparkles className="w-4 h-4" />
+                <span>Must-Try Dish</span>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.6 }}
+              className="absolute -bottom-4 -left-4 px-6 py-3 bg-gradient-to-r from-secondary to-italian-green text-white font-bold rounded-full shadow-xl z-20"
+            >
+              <div className="flex items-center gap-2">
+                <Award className="w-4 h-4" />
+                <span>Best Seller</span>
+              </div>
+            </motion.div>
+
+            {/* Floating Food Shapes */}
+            {/* Basil Leaf */}
+            <motion.div
+              className="absolute -top-8 left-12 text-5xl z-10"
+              animate={{ 
+                y: [0, -15, 0],
+                rotate: [0, 5, 0]
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            >
+              🌿
+            </motion.div>
+
+            {/* Cheese Cube */}
+            <motion.div
+              className="absolute top-20 -right-8 text-4xl z-10"
+              animate={{ 
+                y: [0, 15, 0],
+                rotate: [0, -5, 0]
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5
+              }}
+            >
+              🧀
+            </motion.div>
+
+            {/* Pasta Outline */}
+            <motion.div
+              className="absolute -bottom-6 right-16 text-4xl z-10 opacity-80"
+              animate={{ 
+                y: [0, -10, 0],
+                rotate: [0, 10, 0]
+              }}
+              transition={{ 
+                duration: 3.5, 
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 1
+              }}
+            >
+              🍝
+            </motion.div>
+
+            {/* Surprise Feature: Quick Stats Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.4, duration: 0.6 }}
+              className="absolute bottom-8 right-8 bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl z-20"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Clock className="w-6 h-6 text-primary" />
+                </div>
+                <div>
+                  <p className="text-xs text-deep-black/60 font-medium">Ready in</p>
+                  <p className="text-lg font-bold text-deep-black">8-10 mins</p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Elegant Scroll Indicator */}
+      {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-12 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3"
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
+        transition={{ delay: 1.5 }}
       >
         <motion.div
-          animate={{ y: [0, 12, 0] }}
+          animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2"
         >
-          <div className="w-7 h-12 border-2 border-cream/60 rounded-full flex justify-center pt-2 backdrop-blur-sm">
+          <span className="text-xs text-deep-black/50 font-medium tracking-widest uppercase">
+            Scroll to explore
+          </span>
+          <div className="w-6 h-10 border-2 border-deep-black/20 rounded-full flex justify-center pt-2">
             <motion.div
-              className="w-2 h-4 bg-cream rounded-full"
-              animate={{ y: [0, 16, 0], opacity: [1, 0.3, 1] }}
+              className="w-1.5 h-3 bg-primary rounded-full"
+              animate={{ y: [0, 12, 0], opacity: [1, 0.3, 1] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             />
           </div>
         </motion.div>
-        <span className="text-cream/60 text-sm font-light tracking-widest uppercase">Scroll</span>
       </motion.div>
     </section>
   );
