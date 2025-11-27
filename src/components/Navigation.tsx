@@ -78,7 +78,7 @@ export const Navigation = ({ transparentOnHero = false }: NavigationProps) => {
             <img
               src={logo}
               alt="Italian Ecstasy"
-              className={`h-14 md:h-20 transition-all duration-300 ${logoFilter}`}
+              className={`h-16 md:h-24 transition-all duration-300 ${logoFilter}`}
             />
           </Link>
 
