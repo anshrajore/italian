@@ -40,7 +40,11 @@ export const TestimonialsSection = () => {
   };
 
   return (
-    <section className="section-padding bg-gradient-to-b from-background to-muted/30" ref={ref}>
+    <section
+      id="reviews"
+      className="section-padding bg-gradient-to-b from-background to-muted/30"
+      ref={ref}
+    >
       <div className="container mx-auto max-w-7xl">
         <motion.div
           className="text-center mb-20"
