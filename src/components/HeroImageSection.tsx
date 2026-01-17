@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import heroDesktop from "@/assets/welcome.png";
-import heroMobile from "@/assets/welcome2.png";
+import heroMobile from "@/assets/hero.png";
 
 export const HeroImageSection = () => {
   const handleScroll = () => {

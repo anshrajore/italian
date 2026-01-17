@@ -66,16 +66,19 @@ export const Footer = () => {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
                 <span className="text-cream/70">
-                  College Road, Nashik, Maharashtra
+                  Shop No 1, Rushiraj Enclave, College Rd, opp. Liquor Embassy, D'souza Colony, Nashik, Maharashtra
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary flex-shrink-0" />
-                <span className="text-cream/70">+91 XXXXX XXXXX</span>
+                <div className="flex flex-col">
+                  <span className="text-cream/70">+91 79723 55203</span>
+                  <span className="text-cream/70">+91 79722 82992</span>
+                </div>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary flex-shrink-0" />
-                <span className="text-cream/70">hello@italianecstasy.com</span>
+                <span className="text-cream/70">niniomfoodworks@gmail.com</span>
               </li>
             </ul>
           </div>

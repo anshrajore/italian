@@ -36,7 +36,7 @@ export const ContactSection = () => {
   // See GOOGLE_MAPS_SETUP.md for detailed instructions
   // 
   // Current placeholder URL (replace with your actual embed URL):
-  const googleMapsEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.1234567890!2d73.78901234567890!3d19.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDA3JzI0LjQiTiA3M8KwNDcrMjAuNCJF!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin";
+  const googleMapsEmbedUrl = "https://maps.google.com/maps?q=Italian+Ecstasy,+Nashik&t=&z=15&ie=UTF8&iwloc=&output=embed";
 
   return (
     <section id="contact" className="section-padding bg-gradient-to-b from-background to-muted/30" ref={ref}>
@@ -69,7 +69,7 @@ export const ContactSection = () => {
               <h3 className="text-2xl md:text-3xl font-heading font-bold text-foreground mb-6">
                 Get in Touch
               </h3>
-              
+
               <div className="space-y-6">
                 {/* Address */}
                 <div className="flex items-start gap-4">
@@ -79,8 +79,9 @@ export const ContactSection = () => {
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Address</h4>
                     <p className="text-muted-foreground leading-relaxed">
-                      College Road, Nashik,<br />
-                      Maharashtra, India
+                      📍 Shop No 1, Rushiraj Enclave, College Rd,<br />
+                      opp. Liquor Embassy, D'souza Colony,<br />
+                      Nashik, Maharashtra
                     </p>
                   </div>
                 </div>
@@ -92,11 +93,17 @@ export const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Phone</h4>
-                    <a 
-                      href="tel:+91XXXXXXXXXX" 
-                      className="text-muted-foreground hover:text-primary transition-colors"
+                    <a
+                      href="tel:+917972355203"
+                      className="text-muted-foreground hover:text-primary transition-colors block"
                     >
-                      +91 XXXXX XXXXX
+                      +91 79723 55203
+                    </a>
+                    <a
+                      href="tel:+917972282992"
+                      className="text-muted-foreground hover:text-primary transition-colors block"
+                    >
+                      +91 79722 82992
                     </a>
                   </div>
                 </div>
@@ -108,11 +115,11 @@ export const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-1">Email</h4>
-                    <a 
-                      href="mailto:hello@italianecstasy.com" 
+                    <a
+                      href="mailto:niniomfoodworks@gmail.com"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      hello@italianecstasy.com
+                      niniomfoodworks@gmail.com
                     </a>
                   </div>
                 </div>
@@ -134,7 +141,7 @@ export const ContactSection = () => {
               {/* Directions Button */}
               <div className="mt-8 pt-6 border-t border-border/50">
                 <a
-                  href="https://maps.google.com/?q=College+Road+Nashik+Maharashtra"
+                  href="https://maps.app.goo.gl/wZPsY5Rq4qXk33Wi9?g_st=ipc"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-full font-semibold hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:scale-105"
@@ -185,7 +192,7 @@ export const ContactSection = () => {
               We're Here to Serve You
             </h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Whether you're dining in, taking out, or ordering for delivery, we're committed to bringing you the finest Italian flavors. 
+              Whether you're dining in, taking out, or ordering for delivery, we're committed to bringing you the finest Italian flavors.
               Visit us today and discover why we're Nashik's favorite Italian destination!
             </p>
           </div>
