@@ -83,7 +83,7 @@ export const Navigation = ({ transparentOnHero = false }: NavigationProps) => {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) =>
               link.accent ? (
                 <a
@@ -109,6 +109,17 @@ export const Navigation = ({ transparentOnHero = false }: NavigationProps) => {
                 </a>
               )
             )}
+            <a
+              href="https://zomato.onelink.me/xqzv/jl8m1nah"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={isHeroOverlay
+                ? "px-6 py-2.5 rounded-full bg-white text-primary font-semibold font-heading tracking-wide hover:bg-white/90 transition-all duration-300 shadow-lg"
+                : "px-6 py-2.5 rounded-full bg-primary text-primary-foreground font-semibold font-heading tracking-wide hover:bg-primary/90 transition-all duration-300 shadow-md hover:shadow-lg"
+              }
+            >
+              Order Now
+            </a>
             <a
               href={location.pathname === "/" ? "#contact" : "/#contact"}
               className={buttonClass}
@@ -166,6 +177,15 @@ export const Navigation = ({ transparentOnHero = false }: NavigationProps) => {
                 </a>
               )
             )}
+            <a
+              href="https://zomato.onelink.me/xqzv/jl8m1nah"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-center hover:bg-primary/90 transition-all duration-300 shadow-md"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Order Now
+            </a>
             <a
               href={location.pathname === "/" ? "#contact" : "/#contact"}
               className={mobileButtonClass}

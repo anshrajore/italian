@@ -7,6 +7,32 @@ import periPeriMeatballs from "@/assets/peri-peri-meatballs.jpg";
 import lemonIcedTea from "@/assets/lemon-iced-tea.jpg";
 import peachIcedTea from "@/assets/peach-iced-tea.jpg";
 import virginMojito from "@/assets/virgin-mojito.jpg";
+// New menu images
+import chickenAglioEOlio from "@/assets/chicken-aglio-e-olio.jpg";
+import vegAglioEOlio from "@/assets/veg-aglio-e-olio.jpg";
+import chickenAlfredoPasta from "@/assets/chicken-alfredo-pasta.jpg";
+import vegAlfredoPasta from "@/assets/veg-alfredo-pasta.jpg";
+import chickenArrabbiataPasta from "@/assets/chicken-arrabbiata-pasta.jpg";
+import vegArrabbiataPasta from "@/assets/veg-arrabbiata-pasta.jpg";
+import chickenBolognese from "@/assets/chicken-bolognese.jpg";
+import spaghettiMeatballs from "@/assets/spaghetti-meatballs.jpg";
+import chickenMacNCheese from "@/assets/chicken-mac-n-cheese.jpg";
+import vegMacNCheese from "@/assets/veg-mac-n-cheese.jpg";
+import chickenChilliMacNCheese from "@/assets/chicken-chilli-mac-n-cheese.jpg";
+import vegChilliMacNCheese from "@/assets/veg-chilli-mac-n-cheese.jpg";
+import vegTandooriMacNCheese from "@/assets/veg-tandoori-mac-n-cheese.jpg";
+import chickenRavioli from "@/assets/chicken-ravioli.jpg";
+import cottageCheeseRavioli from "@/assets/cottage-cheese-ravioli.jpg";
+import chickenPeriPeriPasta from "@/assets/chicken-peri-peri-pasta.jpg";
+import vegPeriPeriPasta from "@/assets/veg-peri-peri-pasta.jpg";
+import chickenTandooriPasta from "@/assets/chicken-tandoori-pasta.jpg";
+import vegTandooriPasta from "@/assets/veg-tandoori-pasta.jpg";
+import vegSchezwanPasta from "@/assets/veg-schezwan-pasta.jpg";
+import pestoPastaNew from "@/assets/pesto-pasta-new.jpg";
+import vegCreamyPesto from "@/assets/veg-creamy-pesto.jpg";
+import veg4CheeseSpaghetti from "@/assets/veg-4-cheese-spaghetti.jpg";
+import chickenMixSaucePasta from "@/assets/chicken-mix-sauce-pasta.jpg";
+import vegMixSaucePasta from "@/assets/veg-mix-sauce-pasta.jpg";
 
 export type MenuItem = {
   name: string;
@@ -45,7 +71,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Creamy yet spicy in-house peri peri sauce with crunchy veggies in pasta of your choice",
       vegPrice: "₹279",
       nonVegPrice: "₹299",
-      image: periPeriPasta,
+      image: vegPeriPeriPasta,
       isBestseller: true,
       spicyLevel: 2,
       category: "musttry",
@@ -55,7 +81,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Al dente spaghetti in warm garlicky chilli olive oil & gentle heat",
       vegPrice: "₹289",
       nonVegPrice: "₹309",
-      image: spaghettiAglioOlio,
+      image: vegAglioEOlio,
       spicyLevel: 3,
       category: "musttry",
     },
@@ -64,6 +90,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Spaghetti in velvety rich 4-cheese sauce",
       vegPrice: "₹299",
       nonVegPrice: "₹319",
+      image: veg4CheeseSpaghetti,
       isBestseller: true,
       category: "musttry",
     },
@@ -81,6 +108,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Basic tomato sauce in penne pasta",
       vegPrice: "₹199",
       nonVegPrice: "₹219",
+      image: vegArrabbiataPasta,
       category: "classic",
     },
     {
@@ -88,6 +116,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Creamy white sauce in penne pasta",
       vegPrice: "₹219",
       nonVegPrice: "₹239",
+      image: vegAlfredoPasta,
       isBestseller: true,
       category: "classic",
     },
@@ -96,6 +125,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Pink sauce in penne pasta",
       vegPrice: "₹219",
       nonVegPrice: "₹239",
+      image: vegMixSaucePasta,
       category: "classic",
     },
     {
@@ -103,6 +133,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Basil-based green sauce in spaghetti pasta",
       vegPrice: "₹239",
       nonVegPrice: "₹259",
+      image: pestoPastaNew,
       category: "classic",
     },
     {
@@ -110,6 +141,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Creamy basil green sauce in spaghetti pasta",
       vegPrice: "₹249",
       nonVegPrice: "₹269",
+      image: vegCreamyPesto,
       category: "classic",
     },
     {
@@ -117,6 +149,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Spaghetti with garlic, olive oil & chilli flakes",
       vegPrice: "₹239",
       nonVegPrice: "₹259",
+      image: vegAglioEOlio,
       spicyLevel: 2,
       category: "classic",
     },
@@ -124,6 +157,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       name: "Chicken Bolognese",
       description: "Ground chicken-based red sauce in spaghetti",
       price: "₹279",
+      image: chickenBolognese,
       isNonVegOnly: true,
       category: "classic",
     },
@@ -131,6 +165,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       name: "Spaghetti & Meat Balls",
       description: "Chicken meatballs served with tomato sauce",
       price: "₹289",
+      image: spaghettiMeatballs,
       isNonVegOnly: true,
       isBestseller: true,
       category: "classic",
@@ -142,7 +177,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Macaroni served in cheese sauce",
       vegPrice: "₹239",
       nonVegPrice: "₹259",
-      image: macNCheese,
+      image: vegMacNCheese,
       isBestseller: true,
       category: "mac",
     },
@@ -151,6 +186,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Spicy macaroni in cheese sauce",
       vegPrice: "₹249",
       nonVegPrice: "₹269",
+      image: vegChilliMacNCheese,
       spicyLevel: 1,
       category: "mac",
     },
@@ -159,6 +195,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Tandoori spiced mac n cheese",
       vegPrice: "₹259",
       nonVegPrice: "₹279",
+      image: vegTandooriMacNCheese,
       spicyLevel: 2,
       category: "mac",
     },
@@ -176,6 +213,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       name: "Cottage Cheese Ravioli",
       description: "Square stuffed pasta in mix sauce",
       price: "₹229",
+      image: cottageCheeseRavioli,
       isVegOnly: true,
       category: "ravioli",
     },
@@ -183,6 +221,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       name: "Chicken Ravioli",
       description: "Square stuffed pasta in mix sauce",
       price: "₹229",
+      image: chickenRavioli,
       isNonVegOnly: true,
       category: "ravioli",
     },
@@ -193,6 +232,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Spicy pasta for Indian palate with tandoori flavors",
       vegPrice: "₹249",
       nonVegPrice: "₹249",
+      image: vegTandooriPasta,
       spicyLevel: 2,
       category: "fusion",
     },
@@ -201,6 +241,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Spicy pasta with Schezwan sauce",
       vegPrice: "₹279",
       nonVegPrice: "₹279",
+      image: vegSchezwanPasta,
       spicyLevel: 2,
       category: "fusion",
     },

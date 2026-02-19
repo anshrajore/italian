@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ChefHat, Clock, Sparkles, ArrowRight } from "lucide-react";
+import vegTandooriMacNCheese from "@/assets/veg-tandoori-mac-n-cheese.jpg";
 
 export const DailySpecialSection = () => {
   const ref = useRef(null);
@@ -9,12 +10,13 @@ export const DailySpecialSection = () => {
   const [isRevealed, setIsRevealed] = useState(false);
 
   const dailySpecial = {
-    name: "Truffle Mushroom Pasta",
-    description: "Luxurious truffle-infused cream sauce with sautéed mushrooms, parmesan, and fresh herbs on your choice of pasta",
-    originalPrice: "₹349",
+    name: "Tandoori Mac N Cheese",
+    description: "Tandoori spiced mac n cheese — creamy macaroni with bold Indian flavors, crafted fresh for today only",
+    originalPrice: "₹279",
     specialPrice: "₹249",
-    discount: "30% OFF",
+    discount: "11% OFF",
     availableUntil: "11:59 PM Today",
+    image: vegTandooriMacNCheese,
   };
 
   return (
@@ -175,13 +177,16 @@ export const DailySpecialSection = () => {
                       <span className="font-semibold">Available until: {dailySpecial.availableUntil}</span>
                     </div>
 
-                    <motion.button
-                      className="btn-hero"
+                    <motion.a
+                      href="https://zomato.onelink.me/xqzv/jl8m1nah"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-primary text-primary-foreground px-10 py-4 rounded-full font-semibold text-lg hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       Order Now
-                    </motion.button>
+                    </motion.a>
                   </div>
 
                   <motion.div
@@ -192,7 +197,7 @@ export const DailySpecialSection = () => {
                   >
                     <div className="relative">
                       <motion.div
-                        className="w-48 h-48 md:w-64 md:h-64 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center"
+                        className="w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl ring-4 ring-primary/30"
                         animate={{
                           boxShadow: [
                             "0 0 40px hsl(355 70% 45% / 0.4)",
@@ -202,7 +207,11 @@ export const DailySpecialSection = () => {
                         }}
                         transition={{ duration: 2, repeat: Infinity }}
                       >
-                        <ChefHat className="w-32 h-32 md:w-40 md:h-40 text-primary" />
+                        <img
+                          src={dailySpecial.image}
+                          alt={dailySpecial.name}
+                          className="w-full h-full object-cover"
+                        />
                       </motion.div>
                       <motion.div
                         className="absolute -top-4 -right-4 bg-secondary text-secondary-foreground w-16 h-16 rounded-full flex items-center justify-center font-bold text-lg"
