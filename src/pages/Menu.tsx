@@ -16,107 +16,101 @@ const formatCategory = (category?: string) => {
 const MenuCard = ({ item, index }: { item: MenuItem; index: number }) => {
   return (
     <motion.div
-      className="group bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-border/70 flex flex-col"
+      className="group bg-white rounded-2xl overflow-hidden flex flex-col border border-stone-200/90 shadow-lg shadow-stone-200/40 hover:shadow-xl hover:shadow-stone-300/50 transition-all duration-300"
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: Math.min(index * 0.05, 0.6), duration: 0.5 }}
-      whileHover={{ y: -8, scale: 1.02 }}
+      whileHover={{ y: -6, scale: 1.01 }}
     >
       {item.image && (
-        <div className="relative h-56 overflow-hidden">
+        <div className="relative h-52 overflow-hidden bg-stone-100">
           <img
             src={item.image}
             alt={item.name}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-          
-          {/* Badges on Image - Better positioning */}
+          <div className="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-transparent to-transparent" />
           <div className="absolute top-3 right-3 flex flex-wrap gap-1.5 justify-end">
             {item.isBestseller && (
-              <div className="bg-primary/95 backdrop-blur-sm text-primary-foreground px-2.5 py-1 rounded-full font-semibold text-xs flex items-center gap-1 shadow-md">
-                <Heart className="w-3 h-3 fill-current" />
-                <span className="whitespace-nowrap">Bestseller</span>
-              </div>
+              <span className="bg-white/95 backdrop-blur-sm text-stone-800 px-2.5 py-1 rounded-full font-semibold text-xs flex items-center gap-1 shadow-sm border border-stone-200/80">
+                <Heart className="w-3 h-3 fill-red-500 text-red-500" />
+                Bestseller
+              </span>
             )}
             {item.spicyLevel && item.spicyLevel > 0 && (
-              <div className="bg-red-500/95 backdrop-blur-sm text-white px-2.5 py-1 rounded-full font-semibold text-xs flex items-center gap-1 shadow-md">
+              <span className="bg-white/95 backdrop-blur-sm text-red-600 px-2.5 py-1 rounded-full font-semibold text-xs flex items-center gap-1 shadow-sm border border-red-200/80">
                 {[...Array(item.spicyLevel)].map((_, i) => (
                   <Flame key={i} className="w-3 h-3 fill-current" />
                 ))}
-              </div>
+              </span>
             )}
           </div>
         </div>
       )}
 
-      <div className="p-6 flex flex-col h-full">
-        <div className="flex items-center justify-between mb-3">
-          <span className="px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-muted/60 text-muted-foreground uppercase">
+      <div className="p-5 flex flex-col flex-1">
+        <div className="flex items-center justify-between gap-2 mb-2">
+          <span className="text-[10px] font-bold tracking-[0.15em] text-primary uppercase">
             {formatCategory(item.category)}
           </span>
           {item.isBestseller && !item.image && (
-            <span className="text-xs font-semibold text-primary flex items-center gap-1">
-              <Heart className="w-3 h-3 fill-primary" /> Bestseller
+            <span className="text-xs font-semibold text-red-600 flex items-center gap-1">
+              <Heart className="w-3 h-3 fill-current" /> Bestseller
             </span>
           )}
         </div>
-        <h3 className="text-xl font-heading font-bold text-foreground mb-2 line-clamp-1">
+        <h3 className="text-lg font-heading font-bold text-stone-800 mb-1.5 line-clamp-1">
           {item.name}
         </h3>
-        <p className="text-sm text-muted-foreground mb-6 leading-relaxed line-clamp-2 min-h-[2.5rem]">
+        <p className="text-sm text-stone-500 leading-snug line-clamp-2 min-h-[2.25rem] mb-4">
           {item.description}
         </p>
 
-        {/* Price Section */}
-        <div className="mt-auto pt-4 border-t border-border/50 space-y-4">
+        <div className="mt-auto pt-4 border-t border-stone-200/80 space-y-3">
           {item.vegPrice || item.nonVegPrice ? (
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
               {item.vegPrice && (
-                <div className="flex flex-col items-start flex-1">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <div className="w-3 h-3 border-2 border-green-600 rounded-sm" />
-                    <span className="text-xs font-semibold text-green-600 uppercase tracking-wide">VEG</span>
+                <div className="flex-1 rounded-lg bg-green-50 border border-green-200/60 px-3 py-2">
+                  <div className="flex items-center gap-1.5 mb-0.5">
+                    <div className="w-2.5 h-2.5 border-2 border-green-600 rounded-sm" />
+                    <span className="text-[10px] font-bold text-green-700 uppercase tracking-wider">Veg</span>
                   </div>
-                  <span className="text-xl font-bold text-primary">{item.vegPrice}</span>
+                  <span className="text-base font-bold text-green-800">{item.vegPrice}</span>
                 </div>
               )}
               {item.nonVegPrice && (
-                <div className="flex flex-col items-end flex-1">
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <span className="text-xs font-semibold text-red-600 uppercase tracking-wide">NON VEG</span>
-                    <div className="w-3 h-3 border-2 border-red-600 rounded-sm flex items-center justify-center">
-                      <div className="w-1.5 h-1.5 bg-red-600 rounded-full" />
+                <div className="flex-1 rounded-lg bg-red-50 border border-red-200/60 px-3 py-2 text-right">
+                  <div className="flex items-center justify-end gap-1.5 mb-0.5">
+                    <span className="text-[10px] font-bold text-red-700 uppercase tracking-wider">Non Veg</span>
+                    <div className="w-2.5 h-2.5 border-2 border-red-600 rounded-sm flex items-center justify-center">
+                      <div className="w-1 h-1 bg-red-600 rounded-full" />
                     </div>
                   </div>
-                  <span className="text-xl font-bold text-primary">{item.nonVegPrice}</span>
+                  <span className="text-base font-bold text-red-800">{item.nonVegPrice}</span>
                 </div>
               )}
             </div>
           ) : (
-            <div className="flex items-center justify-between">
-              <div className="flex flex-col">
-                {(item.isVegOnly || item.isNonVegOnly) && (
-                  <div className="flex items-center gap-1.5 mb-1">
-                    <div className={`w-3 h-3 border-2 ${item.isVegOnly ? 'border-green-600' : 'border-red-600'} rounded-sm ${!item.isVegOnly && 'flex items-center justify-center'}`}>
-                      {!item.isVegOnly && <div className="w-1.5 h-1.5 bg-red-600 rounded-full" />}
-                    </div>
-                    <span className={`text-xs font-semibold ${item.isVegOnly ? 'text-green-600' : 'text-red-600'} uppercase tracking-wide`}>
-                      {item.isVegOnly ? 'VEG' : 'NON VEG'}
-                    </span>
+            <div className="rounded-lg bg-stone-100 border border-stone-200/60 px-3 py-2">
+              {(item.isVegOnly || item.isNonVegOnly) && (
+                <div className="flex items-center gap-1.5 mb-0.5">
+                  <div className={`w-2.5 h-2.5 border-2 ${item.isVegOnly ? "border-green-600" : "border-red-600"} rounded-sm ${!item.isVegOnly && "flex items-center justify-center"}`}>
+                    {!item.isVegOnly && <div className="w-1 h-1 bg-red-600 rounded-full" />}
                   </div>
-                )}
-                <span className="text-xl font-bold text-primary">{item.price}</span>
-              </div>
+                  <span className={`text-[10px] font-bold ${item.isVegOnly ? "text-green-700" : "text-red-700"} uppercase tracking-wider`}>
+                    {item.isVegOnly ? "Veg" : "Non Veg"}
+                  </span>
+                </div>
+              )}
+              <span className="text-base font-bold text-stone-800">{item.price}</span>
             </div>
           )}
-          
-          {/* Order Now Button */}
+
           <a
             href="https://zomato.onelink.me/xqzv/jl8m1nah"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full bg-primary text-primary-foreground py-3 px-4 rounded-xl font-semibold text-center hover:bg-primary/90 transition-all duration-300 hover:shadow-lg hover:scale-[1.02] block"
+            className="w-full py-2.5 px-4 rounded-full font-semibold text-sm text-center border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-primary-foreground transition-all duration-300 block"
           >
             Order Now
           </a>

@@ -16,6 +16,8 @@ import chickenArrabbiataPasta from "@/assets/chicken-arrabbiata-pasta.jpg";
 import vegArrabbiataPasta from "@/assets/veg-arrabbiata-pasta.jpg";
 import chickenBolognese from "@/assets/chicken-bolognese.jpg";
 import spaghettiMeatballs from "@/assets/spaghetti-meatballs.jpg";
+import spaghettiMeatballs1 from "@/assets/spaghetti-meatballs-1.jpg";
+import spaghettiMeatballs2 from "@/assets/spaghetti-meatballs-2.jpg";
 import chickenMacNCheese from "@/assets/chicken-mac-n-cheese.jpg";
 import vegMacNCheese from "@/assets/veg-mac-n-cheese.jpg";
 import chickenChilliMacNCheese from "@/assets/chicken-chilli-mac-n-cheese.jpg";
@@ -99,6 +101,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Cheesy blanket poured over your favourite pasta",
       price: "₹99 (add-on)",
       isVegOnly: true,
+      image: veg4CheeseSpaghetti,
       category: "musttry",
     },
   ],
@@ -204,6 +207,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Baked mac n cheese with 4 cheese blend",
       vegPrice: "₹289",
       nonVegPrice: "₹309",
+      image: chickenMacNCheese,
       isBestseller: true,
       category: "mac",
     },
@@ -300,6 +304,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Pan seared chicken meatballs",
       price: "₹139",
       isNonVegOnly: true,
+      image: spaghettiMeatballs1,
       category: "meatballs",
     },
     {
@@ -316,6 +321,7 @@ export const menuItems: Record<string, MenuItem[]> = {
       description: "Meatballs in cheesy sauce",
       price: "₹179",
       isNonVegOnly: true,
+      image: spaghettiMeatballs2,
       category: "meatballs",
     },
   ],
