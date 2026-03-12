@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SEO } from "@/components/SEO";
 import { LoadingScreen } from "@/components/LoadingScreen";
 import { Navigation } from "@/components/Navigation";
 import { HeroSection } from "@/components/HeroSection";
@@ -18,6 +19,11 @@ const Index = () => {
 
   return (
     <>
+      <SEO
+        title="Best Italian Restaurant in Nashik | Pasta, Lasagna & Italian Food"
+        description="Italian Ecstasy is Nashik's best Italian restaurant. Authentic pasta, lasagna, mac n cheese & Indian-Italian fusion. Dine-in & delivery. College Road. Ecstasy in Every Bite."
+        canonicalPath="/"
+      />
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       {!isLoading && (
         <div className="min-h-screen">

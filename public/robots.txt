@@ -1,3 +1,6 @@
+# Italian Ecstasy - Nashik
+# https://www.italianecstasy.com
+
 User-agent: Googlebot
 Allow: /
 
@@ -12,3 +15,6 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+# Sitemap (update base URL if your domain differs)
+Sitemap: https://www.italianecstasy.com/sitemap.xml

@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Heart, Flame, LeafyGreen } from "lucide-react";
+import { SEO } from "@/components/SEO";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { menuItems, categories, getAllItems, MenuItem } from "@/data/menuData";
@@ -141,6 +142,11 @@ export const Menu = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Full Menu - Pasta, Lasagna, Mac n Cheese, Sides & Beverages"
+        description="Browse Italian Ecstasy's full menu. Pasta, lasagna, ravioli, mac n cheese, sides, desserts & beverages. Best Italian food in Nashik. Order online or dine-in."
+        canonicalPath="/menu"
+      />
       <Navigation />
       <main>
         <section
